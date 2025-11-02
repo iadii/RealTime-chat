@@ -26,12 +26,11 @@ A full-stack real-time chat application built with Node.js (WebSocket) backend a
 │       ├── config/          # Configuration files
 │       └── server.js        # Entry point
 ├── frontend/
-│   └── src/
-│       ├── components/      # UI components (ChatInput, Messages, etc.)
-│       ├── hooks/           # Custom hooks (useWebSocket, useChat)
-│       ├── services/        # WebSocket connection service
-│       └── App.jsx          # Main component
-└── package.json             # Root package.json for running both services
+   └── src/
+       ├── components/      # UI components (ChatInput, Messages, etc.)
+       ├── hooks/           # Custom hooks (useWebSocket, useChat)
+       ├── services/        # WebSocket connection service
+       └── App.jsx          # Main component
 ```
 
 ## Getting Started
@@ -43,18 +42,14 @@ A full-stack real-time chat application built with Node.js (WebSocket) backend a
 
 ### Installation
 
-1. Install root dependencies:
-   ```bash
-   npm install
-   ```
 
-2. Install backend dependencies:
+1. Install backend dependencies:
    ```bash
    cd backend
    npm install
    ```
 
-3. Install frontend dependencies:
+2. Install frontend dependencies:
    ```bash
    cd frontend
    npm install
@@ -62,13 +57,6 @@ A full-stack real-time chat application built with Node.js (WebSocket) backend a
 
 ### Running the Application
 
-#### Option 1: Run both services simultaneously
-```bash
-npm start
-```
-This will start both the backend server and frontend development server concurrently.
-
-#### Option 2: Run services separately
 
 1. Start the backend server:
    ```bash
