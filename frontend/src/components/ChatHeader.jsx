@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const ChatHeader = ({ username, setUsername, handleSetUsername }) => {
   return (
@@ -14,7 +14,7 @@ const ChatHeader = ({ username, setUsername, handleSetUsername }) => {
         <button onClick={handleSetUsername}>Set Username</button>
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default ChatHeader
+export default ChatHeader;

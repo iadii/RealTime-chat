@@ -1,6 +1,14 @@
-import React from 'react'
+import React from 'react';
 
-const UserList = ({ users, insertUsername, userListPosition }) => {
+const UserList = ({ 
+  showUserList, 
+  userListPosition, 
+  users, 
+  insertUsername,
+  setShowUserList
+}) => {
+  if (!showUserList) return null;
+
   return (
     <div 
       className="user-list"
@@ -14,13 +22,16 @@ const UserList = ({ users, insertUsername, userListPosition }) => {
         <div 
           key={user.id} 
           className="user-list-item"
-          onClick={() => insertUsername(user)}
+          onClick={() => {
+            insertUsername(user);
+            setShowUserList(false);
+          }}
         >
           @{user.username}
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default UserList
+export default UserList;

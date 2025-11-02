@@ -16,7 +16,7 @@ const ChatContainer = () => {
   const messagesEndRef = useRef(null)
   const inputRef = useRef(null)
   
-  const { socket, connected } = useWebSocket('ws://localhost:8081')
+  const { socket, connected } = useWebSocket('ws://localhost:9001')
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })

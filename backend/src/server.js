@@ -10,7 +10,6 @@ const serverConfig = require('./config/serverConfig');
 const logger = require('./utils/logger');
 
 const app = express();
-const server = http.createServer(app);
 
 app.use(corsMiddleware);
 app.use(express.json());
@@ -29,13 +28,37 @@ const router = initializeRoutes(httpController);
 
 app.use(router);
 
-const wss = new WebSocket.Server({ server });
+// Handle port in use errors gracefully
+function startServer(port) {
+  const server = http.createServer(app);
+  const wss = new WebSocket.Server({ noServer: true });
+  
+  wss.on('connection', (ws, req) => {
+    webSocketController.handleConnection(ws, req);
+  });
 
-wss.on('connection', (ws, req) => {
-  webSocketController.handleConnection(ws, req);
-});
+  server.on('upgrade', (request, socket, head) => {
+    wss.handleUpgrade(request, socket, head, (ws) => {
+      wss.emit('connection', ws, request);
+    });
+  });
 
-server.listen(serverConfig.port, serverConfig.host, () => {
-  logger.info(`Server is listening on port ${serverConfig.port}`);
-  logger.info(`WebSocket server is ready`);
-});
+  server.listen(port, serverConfig.host, () => {
+    logger.info(`Server is listening on port ${port}`);
+    logger.info(`WebSocket server is ready`);
+  });
+
+  server.on('error', (error) => {
+    if (error.code === 'EADDRINUSE') {
+      logger.warn(`Port ${port} is already in use. Trying ${port + 1}...`);
+      setTimeout(() => {
+        startServer(port + 1);
+      }, 1000);
+    } else {
+      logger.error('Server error:', error);
+    }
+  });
+}
+
+// Start the server with the configured port
+startServer(serverConfig.port);

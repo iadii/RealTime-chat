@@ -3,7 +3,6 @@ const HttpController = require('../controllers/HttpController');
 
 const router = express.Router();
 
-// We'll initialize the controller in the server file
 let httpController;
 
 function initializeRoutes(controller) {

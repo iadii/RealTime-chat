@@ -82,6 +82,7 @@ class WebSocketController {
       timestamp: new Date().toISOString()
     };
     
+    console.log('Broadcasting chat message:', chatMessage); // Debug log
     this.broadcast(chatMessage);
   }
   
@@ -105,6 +106,7 @@ class WebSocketController {
   
   broadcast(message, excludeId = null) {
     const clients = this.chatModel.getAllClients();
+    console.log(`Broadcasting message to ${clients.size} clients, excluding ${excludeId}`); // Debug log
     clients.forEach((client, id) => {
       if (client.readyState === 1 && id !== excludeId) { // 1 = OPEN
         this.sendToClient(client, message);

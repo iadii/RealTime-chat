@@ -1,17 +1,18 @@
-import React, { forwardRef } from 'react'
+import React from 'react';
 
-const ChatInput = forwardRef(({ 
+const ChatInput = ({ 
   message, 
   setMessage, 
   handleInputChange, 
   handleInputKeyDown, 
-  handleSendMessage, 
-  connected 
-}, ref) => {
+  handleSendMessage,
+  connected,
+  inputRef
+}) => {
   return (
     <form className="chat-form" onSubmit={handleSendMessage}>
       <input
-        ref={ref}
+        ref={inputRef}
         type="text"
         placeholder="Type your message... (@ to tag users)"
         value={message}
@@ -23,7 +24,7 @@ const ChatInput = forwardRef(({
         Send
       </button>
     </form>
-  )
-})
+  );
+};
 
-export default ChatInput
+export default ChatInput;
