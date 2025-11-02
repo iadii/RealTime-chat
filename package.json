@@ -1,0 +1,15 @@
+{
+  "name": "real-time-chat",
+  "version": "1.0.0",
+  "description": "A full-stack real-time chat application with Node.js WebSocket backend and React frontend",
+  "scripts": {
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm start\"",
+    "start": "concurrently \"cd backend && npm start\" \"cd frontend && npm start\""
+  },
+  "keywords": ["chat", "websocket", "nodejs", "react"],
+  "author": "Adii",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.0.0"
+  }
+}
