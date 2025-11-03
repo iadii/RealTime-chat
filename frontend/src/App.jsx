@@ -17,7 +17,7 @@ function App() {
     messages,
     users,
     sendMessage
-  } = useWebSocket('ws://localhost:9002')
+  } = useWebSocket('ws://localhost:9002' || 'ws://127.0.0.1:9002/ws' )
 
   const {
     username,
